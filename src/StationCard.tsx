@@ -79,8 +79,8 @@ interface StationCardProps {
   station: GetStopPointsMatch;
 }
 
-const StationCard = ({ station }: StationCardProps) => {
-  const [details, setDetails] = useState<StopPointInfo>(null);
+const StationCard: React.FunctionComponent<StationCardProps> = ({ station }) => {
+  const [details, setDetails] = useState<StopPointInfo | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [predictedArrivals, setPredictedArrivals] = useState<
     ArrivalPrediction[]
@@ -147,7 +147,7 @@ const StationCard = ({ station }: StationCardProps) => {
         <div>
           <h3>Lines serving this station:</h3>
           <StationDetailsSection>
-            {details.lines.map((line: any) => {
+            {details?.lines.map((line: any) => {
               return <p key={line.name}>{line.name}</p>;
             })}
           </StationDetailsSection>
@@ -161,7 +161,6 @@ const StationCard = ({ station }: StationCardProps) => {
       {station?.modes?.includes("overground") && showArrivalsList
         ? predictedArrivals.map((arrival) => {
             const arrivalEstimate = dayjs().to(arrival.expectedArrival, true);
-
             return (
               <p>
                 Towards <strong>{arrival.destinationName}</strong> in{" "}

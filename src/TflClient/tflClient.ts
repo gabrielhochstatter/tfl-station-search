@@ -8,8 +8,6 @@ import {
 export const getStopPoints = async (
   query: string
 ): Promise<GetStopPointsResponse> => {
-  if (!query) return;
-
   const stopPointsResponse = await axios.get(
     `https://api.tfl.gov.uk/StopPoint/Search?query=${query}`
   );
@@ -20,7 +18,6 @@ export const getStopPoints = async (
 export const getStopPointInfo = async (
   stopId: string
 ): Promise<StopPointInfo> => {
-  if (!stopId) return;
   const stopPointInfoResponse = await axios.get(
     `https://api.tfl.gov.uk/StopPoint/${stopId}`
   );
@@ -32,7 +29,6 @@ export const getStopPointInfo = async (
 export const getStopPointArrivals = async (
   stopId: string
 ): Promise<ArrivalPrediction[]> => {
-  if (!stopId) return;
   const stopPointArrivalsResponse = await axios.get(
     `https://api.tfl.gov.uk/StopPoint/${stopId}/Arrivals`
   );

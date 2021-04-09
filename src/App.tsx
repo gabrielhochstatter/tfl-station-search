@@ -24,7 +24,7 @@ export default function App() {
   const [matches, setMatches] = useState<GetStopPointsMatch[]>([]);
 
   useEffect(() => {
-    const getMatchingStops = async (stopPointQuery) => {
+    const getMatchingStops = async (stopPointQuery: string) => {
       if (!stopPointQuery) return;
       try {
         const stops = await getStopPoints(stopPointQuery);

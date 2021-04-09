@@ -9,7 +9,11 @@ import {
 
 import styled from "styled-components";
 
-const iconLookup = {
+type IconLookup = {
+  [key: string]: (JSX.Element | string)[]
+}
+
+const iconLookup: IconLookup = {
   "river-bus": [<MdDirectionsBoat />, "River Bus"],
   "national-rail": [<MdTrain />, "National Rail"],
   tflrail: [<MdTrain />, "TFL Rail"],
@@ -48,7 +52,11 @@ const Tooltip = styled.div`
   }
 `;
 
-const TransportIcon = ({ name }) => {
+interface TransportIconProps {
+  name: string;
+}
+
+const TransportIcon: React.FunctionComponent<TransportIconProps> = ({ name }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const content = iconLookup?.[name]?.[0] || <span>{name}</span>;
   const tooltipText = iconLookup?.[name]?.[1];
